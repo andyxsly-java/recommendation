@@ -32,6 +32,7 @@ public class TopSavingRule implements RecommendationRuleSet {
 
     public TopSavingRule(RecommendationRepository repository) {
         this.repository = repository;
+
     }
 
     @Override

@@ -8,7 +8,6 @@ public class RecommendationDto {
     private String name;
     private String text;
 
-
     public RecommendationDto(UUID id, String name, String text) {
         this.id = id;
         this.name = name;

@@ -36,5 +36,4 @@ public class RecommendationResponse {
     public void setRecommendations(List<RecommendationDto> recommendations) {
         this.recommendations = recommendations;
     }
-
 }

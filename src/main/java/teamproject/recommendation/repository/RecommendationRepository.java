@@ -66,5 +66,6 @@ public class RecommendationRepository {
                              AND t.type = 'WITHDRAW'
                 """;
         return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, productType);
+
     }
 }

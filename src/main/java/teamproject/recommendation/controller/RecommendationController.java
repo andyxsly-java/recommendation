@@ -24,5 +24,6 @@ public class RecommendationController {
             @PathVariable("user_id") UUID userId) {
 
         return recommendationService.getRecommendation(userId);
+
     }
 }

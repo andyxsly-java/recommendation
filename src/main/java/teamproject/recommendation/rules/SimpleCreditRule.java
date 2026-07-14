@@ -66,5 +66,4 @@ public class SimpleCreditRule implements RecommendationRuleSet {
 
         return Optional.empty();
     }
-
 }
