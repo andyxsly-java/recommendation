@@ -54,6 +54,7 @@ public class Invest500Rule implements RecommendationRuleSet {
                     )
             );
         }
+
         return Optional.empty();
     }
 }

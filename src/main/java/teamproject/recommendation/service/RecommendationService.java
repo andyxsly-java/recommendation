@@ -26,6 +26,5 @@ public class RecommendationService {
                         .toList();
 
         return new RecommendationResponse(userId, recommendations);
-
     }
 }

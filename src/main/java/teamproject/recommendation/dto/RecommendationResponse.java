@@ -1,7 +1,6 @@
 package teamproject.recommendation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.UUID;
 

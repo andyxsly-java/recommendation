@@ -1,7 +1,6 @@
 package teamproject.recommendation.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -66,6 +65,5 @@ public class RecommendationRepository {
                              AND t.type = 'WITHDRAW'
                 """;
         return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, productType);
-
     }
 }

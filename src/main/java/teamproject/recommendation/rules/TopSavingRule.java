@@ -30,9 +30,9 @@ public class TopSavingRule implements RecommendationRuleSet {
 
     private final RecommendationRepository repository;
 
+
     public TopSavingRule(RecommendationRepository repository) {
         this.repository = repository;
-
     }
 
     @Override

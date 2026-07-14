@@ -30,6 +30,7 @@ public class SimpleCreditRule implements RecommendationRuleSet {
 
     private final RecommendationRepository repository;
 
+
     public SimpleCreditRule(RecommendationRepository repository) {
         this.repository = repository;
     }
@@ -63,7 +64,6 @@ public class SimpleCreditRule implements RecommendationRuleSet {
                     )
             );
         }
-
         return Optional.empty();
     }
 }
