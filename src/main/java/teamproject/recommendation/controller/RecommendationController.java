@@ -19,8 +19,8 @@ public class RecommendationController {
         this.recommendationService = recommendationService;
     }
 
-    @GetMapping("/{userId}")
-    public teamproject.recommendation.dto.RecommendationResponse getRecommendation(
+    @GetMapping("/{user_id}")
+    public RecommendationResponse getRecommendation(
             @PathVariable("user_id") UUID userId) {
 
         return recommendationService.getRecommendation(userId);

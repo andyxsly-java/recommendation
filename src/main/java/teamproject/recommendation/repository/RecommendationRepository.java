@@ -1,9 +1,13 @@
 package teamproject.recommendation.repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import teamproject.recommendation.constants.TransactionTypeConstants;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Repository
 public class RecommendationRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -42,14 +46,14 @@ public class RecommendationRepository {
                     ON t.product_id = p.id
                 WHERE t.user_id = ?
                   AND p.type = ?
-                  AND t.type = 'DEPOSIT'
+                  AND t.type = ?
                 """;
 
         return jdbcTemplate.queryForObject(
                 sql,
                 BigDecimal.class,
                 userId,
-                productType
+                productType, TransactionTypeConstants.DEPOSIT
         );
     }
 
@@ -62,8 +66,8 @@ public class RecommendationRepository {
                 ON t.product_id = p.id
                              WHERE t.user_id = ?
                              AND p.type = ?
-                             AND t.type = 'WITHDRAW'
+                             AND t.type = ?
                 """;
-        return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, productType);
+        return jdbcTemplate.queryForObject(sql, BigDecimal.class, userId, productType, TransactionTypeConstants.WITHDRAW);
     }
 }

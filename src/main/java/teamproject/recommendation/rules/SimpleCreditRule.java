@@ -1,6 +1,7 @@
 package teamproject.recommendation.rules;
 
 import org.springframework.stereotype.Component;
+import teamproject.recommendation.constants.ProductTypeConstants;
 import teamproject.recommendation.dto.RecommendationDto;
 import teamproject.recommendation.repository.RecommendationRepository;
 
@@ -38,13 +39,13 @@ public class SimpleCreditRule implements RecommendationRuleSet {
     @Override
     public Optional<RecommendationDto> check(UUID userId) {
 
-        boolean hasCredit = repository.hasProduct(userId, "CREDIT");
+        boolean hasCredit = repository.hasProduct(userId, ProductTypeConstants.CREDIT);
 
         BigDecimal debitDeposit =
-                repository.getDepositSum(userId, "DEBIT");
+                repository.getDepositSum(userId, ProductTypeConstants.DEBIT);
 
         BigDecimal debitWithdraw =
-                repository.getWithdrawSum(userId, "DEBIT");
+                repository.getWithdrawSum(userId, ProductTypeConstants.DEBIT);
 
         boolean depositGreaterThanWithdraw =
                 debitDeposit.compareTo(debitWithdraw) > 0;
