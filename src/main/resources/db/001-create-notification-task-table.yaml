@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-recommendation-rule-table
+      author: andrey
+
+      changes:
+        - createTable:
+            tableName: recommendation_rule
+
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: product_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: product_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: product_text
+                  type: TEXT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: rule
+                  type: JSONB
+                  constraints:
+                    nullable: false

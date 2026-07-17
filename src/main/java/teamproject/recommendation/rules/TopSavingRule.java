@@ -2,6 +2,7 @@ package teamproject.recommendation.rules;
 
 import org.springframework.stereotype.Component;
 import teamproject.recommendation.constants.ProductTypeConstants;
+import teamproject.recommendation.constants.TransactionTypeConstants;
 import teamproject.recommendation.dto.RecommendationDto;
 import teamproject.recommendation.repository.RecommendationRepository;
 
@@ -39,16 +40,17 @@ public class TopSavingRule implements RecommendationRuleSet {
     @Override
     public Optional<RecommendationDto> check(UUID userId) {
 
-        boolean hasDebit = repository.hasProduct(userId, ProductTypeConstants.DEBIT);
+        boolean hasDebit = repository.isUserOfProductType(userId, ProductTypeConstants.DEBIT);
 
         BigDecimal debitDeposit =
-                repository.getDepositSum(userId, ProductTypeConstants.DEBIT);
+                repository.getTransactionSum(userId, ProductTypeConstants.DEBIT,TransactionTypeConstants.DEPOSIT
+                );
 
         BigDecimal savingDeposit =
-                repository.getDepositSum(userId, ProductTypeConstants.SAVING);
+                repository.getTransactionSum(userId, ProductTypeConstants.SAVING,TransactionTypeConstants.DEPOSIT);
 
         BigDecimal debitWithdraw =
-                repository.getWithdrawSum(userId, ProductTypeConstants.DEBIT);
+                repository.getTransactionSum(userId, ProductTypeConstants.DEBIT, TransactionTypeConstants.WITHDRAW);
 
         boolean enoughMoney =
                 debitDeposit.compareTo(BigDecimal.valueOf(50000)) >= 0

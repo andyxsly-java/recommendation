@@ -2,6 +2,7 @@ package teamproject.recommendation.rules;
 
 import org.springframework.stereotype.Component;
 import teamproject.recommendation.constants.ProductTypeConstants;
+import teamproject.recommendation.constants.TransactionTypeConstants;
 import teamproject.recommendation.dto.RecommendationDto;
 import teamproject.recommendation.repository.RecommendationRepository;
 
@@ -35,12 +36,12 @@ public class Invest500Rule implements RecommendationRuleSet {
     @Override
     public Optional<RecommendationDto> check(UUID userId) {
 
-        boolean hasDebit = repository.hasProduct(userId, ProductTypeConstants.DEBIT);
+        boolean hasDebit = repository.isUserOfProductType(userId, ProductTypeConstants.DEBIT);
 
-        boolean hasInvest = repository.hasProduct(userId, ProductTypeConstants.INVEST);
+        boolean hasInvest = repository.isUserOfProductType(userId, ProductTypeConstants.INVEST);
 
         BigDecimal savingDeposit =
-                repository.getDepositSum(userId, ProductTypeConstants.SAVING);
+                repository.getTransactionSum(userId, ProductTypeConstants.SAVING, TransactionTypeConstants.DEPOSIT);
 
         if (hasDebit
                 && !hasInvest
