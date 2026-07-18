@@ -7,11 +7,11 @@ public class DynamicRuleDto {
 
     private UUID id;
 
-    private String productName;
+    private String product_name;
 
-    private UUID productId;
+    private UUID product_id;
 
-    private String productText;
+    private String product_text;
 
     private List<RuleDto> rule;
 
@@ -19,14 +19,14 @@ public class DynamicRuleDto {
     }
 
     public DynamicRuleDto(UUID id,
-                                 String productName,
-                                 UUID productId,
-                                 String productText,
+                                 String product_name,
+                                 UUID product_id,
+                                 String product_text,
                                  List<RuleDto> rule) {
         this.id = id;
-        this.productName = productName;
-        this.productId = productId;
-        this.productText = productText;
+        this.product_name = product_name;
+        this.product_id = product_id;
+        this.product_text = product_text;
         this.rule = rule;
     }
 
@@ -39,27 +39,27 @@ public class DynamicRuleDto {
     }
 
     public String getProductName() {
-        return productName;
+        return product_name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductName(String product_name) {
+        this.product_name = product_name;
     }
 
     public UUID getProductId() {
-        return productId;
+        return product_id;
     }
 
-    public void setProductId(UUID productId) {
-        this.productId = productId;
+    public void setProductId(UUID product_id) {
+        this.product_id = product_id;
     }
 
     public String getProductText() {
-        return productText;
+        return product_text;
     }
 
-    public void setProductText(String productText) {
-        this.productText = productText;
+    public void setProductText(String product_text) {
+        this.product_text = this.product_text;
     }
 
     public List<RuleDto> getRule() {
