@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import teamproject.recommendation.dto.DynamicRuleDto;
 import teamproject.recommendation.dto.DynamicRuleResponse;
+import teamproject.recommendation.dto.RuleStatisticsResponse;
 import teamproject.recommendation.service.DynamicRuleService;
+import teamproject.recommendation.service.RuleStatisticService;
 
 import java.util.UUID;
 
@@ -13,9 +15,11 @@ import java.util.UUID;
 public class DynamicRuleController {
 
     private final DynamicRuleService dynamicRuleService;
+    private final RuleStatisticService ruleStatisticService;
 
-    public DynamicRuleController(DynamicRuleService dynamicRuleService) {
+    public DynamicRuleController(DynamicRuleService dynamicRuleService, RuleStatisticService ruleStatisticService) {
         this.dynamicRuleService = dynamicRuleService;
+        this.ruleStatisticService = ruleStatisticService;
     }
 
     @PostMapping
@@ -26,6 +30,11 @@ public class DynamicRuleController {
     @GetMapping
     public DynamicRuleResponse getAllRules() {
         return new DynamicRuleResponse(dynamicRuleService.getAllRules());
+    }
+
+    @GetMapping("/rule/stats")
+    public RuleStatisticsResponse getStatistics() {
+        return ruleStatisticService.getStatistics();
     }
 
     @DeleteMapping("/{id}")

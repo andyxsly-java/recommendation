@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 001-create-recommendation-rule-table
-      author: andrey
+      author: andyxsly
 
       changes:
         - createTable:

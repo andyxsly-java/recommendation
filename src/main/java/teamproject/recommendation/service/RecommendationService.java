@@ -20,13 +20,15 @@ public class RecommendationService {
     private final List<RecommendationRuleSet> rules;
     private final DynamicRuleRepository dynamicRuleRepository;
     private final List<QueryExecutor> executors;
+    private final RuleStatisticService ruleStatisticService;
 
     public RecommendationService(List<RecommendationRuleSet> rules,
                                  DynamicRuleRepository dynamicRuleRepository,
-                                 List<QueryExecutor> executors) {
+                                 List<QueryExecutor> executors, RuleStatisticService ruleStatisticService) {
         this.rules = rules;
         this.dynamicRuleRepository = dynamicRuleRepository;
         this.executors = executors;
+        this.ruleStatisticService = ruleStatisticService;
     }
 
     public RecommendationResponse getRecommendation(UUID userId) {
@@ -57,6 +59,9 @@ public class RecommendationService {
             }
 
             if (passed) {
+
+                ruleStatisticService.increment(dynamicRule.getId());
+
                 recommendations.add(
                         new RecommendationDto(
                                 dynamicRule.getProductId(),

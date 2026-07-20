@@ -15,8 +15,11 @@ public class DynamicRuleService {
 
     private final DynamicRuleRepository dynamicRuleRepository;
 
-    public DynamicRuleService(DynamicRuleRepository dynamicRuleRepository) {
+    private final RuleStatisticService ruleStatisticService;
+
+    public DynamicRuleService(DynamicRuleRepository dynamicRuleRepository, RuleStatisticService ruleStatisticService) {
         this.dynamicRuleRepository = dynamicRuleRepository;
+        this.ruleStatisticService = ruleStatisticService;
     }
 
     public DynamicRuleDto createRule(DynamicRuleDto dto) {
@@ -32,6 +35,7 @@ public class DynamicRuleService {
                 .toList());
 
         RecommendationRuleEntity saved = dynamicRuleRepository.save(entity);
+        ruleStatisticService.createStatistic(saved);
 
         return toDto(saved);
     }

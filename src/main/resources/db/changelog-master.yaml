@@ -1,3 +1,4 @@
 databaseChangeLog:
   - include:
       file: db/001-create-recommendation-table.yaml
+      type: jsonb

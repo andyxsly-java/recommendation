@@ -2,6 +2,7 @@ package teamproject.recommendation.repository;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class RecommendationRepository {
                     .maximumSize(10_000)
                     .build();
 
-    public RecommendationRepository(JdbcTemplate jdbcTemplate) {
+    public RecommendationRepository(@Qualifier("recommendationJdbcTemplate") JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -143,5 +144,11 @@ public class RecommendationRepository {
             String productType,
             String transactionType
     ) {
+    }
+
+    public void clearCaches() {
+        userOfCache.invalidateAll();
+        activeUserCache.invalidateAll();
+        transactionSumCache.invalidateAll();
     }
 }

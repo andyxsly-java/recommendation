@@ -3,8 +3,8 @@ package teamproject.recommendation.rules;
 import org.springframework.stereotype.Component;
 import teamproject.recommendation.constants.ProductTypeConstants;
 import teamproject.recommendation.dto.RecommendationDto;
-import teamproject.recommendation.repository.RecommendationRepository;
 import teamproject.recommendation.constants.TransactionTypeConstants;
+import teamproject.recommendation.repository.RecommendationRepository;
 
 import java.math.BigDecimal;
 import java.util.Optional;
