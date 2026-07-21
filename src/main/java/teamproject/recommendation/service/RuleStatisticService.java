@@ -30,13 +30,12 @@ public class RuleStatisticService {
 
     @Transactional
     public void increment(UUID ruleId) {
+        ruleStatisticRepository.increment(ruleId);
+    }
 
-        RuleStatisticEntity statistic = ruleStatisticRepository.findById(ruleId)
-                .orElseThrow();
-
-        statistic.setCount(statistic.getCount() + 1);
-
-        ruleStatisticRepository.save(statistic);
+    @Transactional
+    public void deleteStatistic(UUID ruleId) {
+        ruleStatisticRepository.deleteById(ruleId);
     }
 
     public List<RuleStatisticEntity> getAllStatistics() {

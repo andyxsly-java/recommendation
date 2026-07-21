@@ -4,24 +4,24 @@ import java.util.UUID;
 
 public class RuleStatisticDto {
 
-    private UUID ruleId;
+    private UUID rule_id;
 
     private long count;
 
     public RuleStatisticDto() {
     }
 
-    public RuleStatisticDto(UUID ruleId, long count) {
-        this.ruleId = ruleId;
+    public RuleStatisticDto(UUID rule_id, long count) {
+        this.rule_id = rule_id;
         this.count = count;
     }
 
     public UUID getRuleId() {
-        return ruleId;
+        return rule_id;
     }
 
-    public void setRuleId(UUID ruleId) {
-        this.ruleId = ruleId;
+    public void setRuleId(UUID rule_id) {
+        this.rule_id = rule_id;
     }
 
     public long getCount() {

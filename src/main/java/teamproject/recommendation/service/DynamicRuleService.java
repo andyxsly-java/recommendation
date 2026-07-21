@@ -48,6 +48,8 @@ public class DynamicRuleService {
     }
 
     public void deleteRule(UUID id) {
+        ruleStatisticService.deleteStatistic(id);
+
         dynamicRuleRepository.deleteById(id);
     }
 

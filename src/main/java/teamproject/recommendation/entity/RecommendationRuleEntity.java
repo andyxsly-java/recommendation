@@ -12,6 +12,13 @@ import java.util.UUID;
 @Table(name = "recommendation_rule")
 public class RecommendationRuleEntity {
 
+    @OneToOne(
+            mappedBy = "rule",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private RuleStatisticEntity statistic;
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

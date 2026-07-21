@@ -32,7 +32,7 @@ public class DynamicRuleController {
         return new DynamicRuleResponse(dynamicRuleService.getAllRules());
     }
 
-    @GetMapping("/rule/stats")
+    @GetMapping("/stats")
     public RuleStatisticsResponse getStatistics() {
         return ruleStatisticService.getStatistics();
     }
