@@ -53,11 +53,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
                 continue;
             }
-
+            // Команда получения рекомендаций по имени пользователя.
             if (message.text().startsWith("/recommend ")) {
 
                 String username = message.text().substring("/recommend ".length()).trim();
-
+                // По ТЗ пользователь должен быть найден ровно один раз.
                 var users = userRepository.findByUsername(username);
 
                 if (users.size() != 1) {
@@ -76,7 +76,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
                 var recommendationResponse =
                         recommendationService.getRecommendation(user.id());
-
+                // Формируем текст сообщения согласно требованиям ТЗ.
                 StringBuilder response = new StringBuilder();
 
                 response.append("Здравствуйте ")

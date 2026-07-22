@@ -14,6 +14,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Сервис, отвечающий за формирование рекомендаций для пользователей.
+ *
+ * <p>При формировании результата используются как статические правила,
+ * реализованные в коде приложения, так и динамические правила,
+ * сохраненные в базе данных.</p>
+ */
 @Service
 public class RecommendationService {
 
@@ -31,17 +38,29 @@ public class RecommendationService {
         this.ruleStatisticService = ruleStatisticService;
     }
 
+    /**
+     * Формирует список рекомендаций для указанного пользователя.
+     *
+     * <p>Сначала проверяются статические правила рекомендаций,
+     * затем выполняются динамические правила. При успешном выполнении
+     * динамического правила увеличивается счетчик его срабатываний.</p>
+     *
+     * @param userId идентификатор пользователя
+     * @return список рекомендаций пользователя
+     */
     public RecommendationResponse getRecommendation(UUID userId) {
 
         List<RecommendationDto> recommendations = new ArrayList<>();
-
+        // Проверяем статические правила рекомендаций,
+        // реализованные непосредственно в коде приложения.
         recommendations.addAll(
                 rules.stream()
                         .map(rule -> rule.check(userId))
                         .flatMap(Optional::stream)
                         .toList()
         );
-
+        // Проверяем динамические правила,
+        // сохраненные в базе данных.
         List<RecommendationRuleEntity> dynamicRules = dynamicRuleRepository.findAll();
 
         for (RecommendationRuleEntity dynamicRule : dynamicRules) {
@@ -59,7 +78,8 @@ public class RecommendationService {
             }
 
             if (passed) {
-
+                // Если правило выполнилось,
+                // увеличиваем счетчик его срабатываний.
                 ruleStatisticService.increment(dynamicRule.getId());
 
                 recommendations.add(
@@ -75,6 +95,9 @@ public class RecommendationService {
         return new RecommendationResponse(userId, recommendations);
     }
 
+    /**
+     * Находит исполнителя для обработки указанного типа запроса.
+     */
     private QueryExecutor findExecutor(String query) {
 
         for (QueryExecutor executor : executors) {

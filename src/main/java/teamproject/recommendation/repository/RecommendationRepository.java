@@ -9,7 +9,12 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.UUID;
-
+/**
+ * Репозиторий для выполнения запросов к транзакционной БД.
+ *
+ * Для уменьшения нагрузки на H2 используются
+ * локальные кэши результатов запросов.
+ */
 @Repository
 public class RecommendationRepository {
 
