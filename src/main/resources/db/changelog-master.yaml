@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: db/002-create-recommendation-table.yaml
+      type: jsonb
+
+  - include:
+      file: db/changelog/002-create-rule-statistic-table.yaml
